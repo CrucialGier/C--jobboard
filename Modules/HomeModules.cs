@@ -17,6 +17,10 @@ namespace ToDoList
         newJob.Save();
         return View["job_added.cshtml", newJob];
       };
+      Get["/view_all_jobs"] = _ => {
+        List<Job> allJobs = Job.GetAll();
+        return View["view_all_jobs.cshtml", allJobs];
+      };
     }
   }
 }

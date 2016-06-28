@@ -8,7 +8,7 @@ namespace JobBoard.Objects
     private string _email;
     private string _name;
     private string _phoneNumber;
-    private static List<string> _instance = new List<string> {};
+    private static List<Job> _instance = new List<Job> {};
 
     public Job (string description)
     {
@@ -51,14 +51,14 @@ namespace JobBoard.Objects
       _phoneNumber = phoneNumber;
     }
 
-    public static List<string> GetAll()
+    public static List<Job> GetAll()
     {
       return _instance;
     }
 
     public void Save()
     {
-      _instance.Add(_description);
+      _instance.Add(this);
     }
 
     public static void ClearAll()

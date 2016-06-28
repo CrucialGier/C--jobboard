@@ -1,10 +1,9 @@
 <h1>To Do List</h1>
-<ul>
-  @foreach(string job in Model)
-  {
-    <li>@job.GetName()</li>
-  }
-</ul>
+@foreach(var currentJob in Model)
+{
+  <h2>@currentJob.GetName(), @currentJob.GetDescription()</h2>
+  <p>Email: @currentJob.GetEmail(), Phone Number: @currentJob.GetPhoneNumber()</p>
+}
 <p><a href="/">Add another job</a></p>
 <form action="/tasks_cleared" method="post">
   <button type="submit" name="button">Clear All Tasks</button>
