@@ -8,7 +8,7 @@ namespace ToDoList
   {
     public HomeModule()
     {
-      Get["/"] = _ => View["add_new_job.cshtml"];
+      Get["/add_new_job"] = _ => View["add_new_job.cshtml"];
       Post["/job_added"] = _ => {
         Job newJob = new Job(Request.Form["new-job"]);
         newJob.SetEmail(Request.Form["contact-email"]);
@@ -16,7 +16,7 @@ namespace ToDoList
         newJob.SetPhoneNumber(Request.Form["contact-number"]);
         return View["job_added.cshtml", newJob];
       };
-      Get["/jobs"] = _ => {
+      Get["/"] = _ => {
         List<Job> allJobs = Job.GetAll();
         return View["view_all_jobs.cshtml", allJobs];
       };
@@ -27,6 +27,13 @@ namespace ToDoList
       Get["/jobs/{id}"] = parameters => {
         Job job = Job.Find(parameters.id);
         return View["job.cshtml", job];
+      };
+
+      Get["/jobs/removed/{id}"]  = parameters => {
+        Job job = Job.Find(parameters.id);
+        List<Job> allJobs = Job.GetAll();
+        job.RemoveJob(job);
+        return View["job_removed.cshtml"];
       };
     }
   }

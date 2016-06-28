@@ -64,6 +64,11 @@ namespace JobBoard.Objects
       return _instances;
     }
 
+    public void RemoveJob(Job jobToRemove)
+    {
+      _instances.Remove(jobToRemove);
+    }
+
     public static void ClearAll()
     {
       _instances.Clear();
