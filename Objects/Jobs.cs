@@ -8,11 +8,14 @@ namespace JobBoard.Objects
     private string _email;
     private string _name;
     private string _phoneNumber;
-    private static List<Job> _instance = new List<Job> {};
+    private int _id;
+    private static List<Job> _instances = new List<Job> {};
 
     public Job (string description)
     {
       _description = description;
+      _instances.Add(this);
+      _id = _instances.Count;
     }
 
     public string GetDescription()
@@ -51,19 +54,24 @@ namespace JobBoard.Objects
       _phoneNumber = phoneNumber;
     }
 
-    public static List<Job> GetAll()
+    public int GetId()
     {
-      return _instance;
+      return _id;
     }
 
-    public void Save()
+    public static List<Job> GetAll()
     {
-      _instance.Add(this);
+      return _instances;
     }
 
     public static void ClearAll()
     {
-      _instance.Clear();
+      _instances.Clear();
+    }
+
+    public static Job Find(int searchId)
+    {
+      return _instances[searchId - 1];
     }
   }
 }

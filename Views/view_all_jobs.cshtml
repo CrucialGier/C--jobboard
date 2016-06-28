@@ -1,8 +1,7 @@
 <h1>To Do List</h1>
 @foreach(var currentJob in Model)
 {
-  <h2>@currentJob.GetName(), @currentJob.GetDescription()</h2>
-  <p>Email: @currentJob.GetEmail(), Phone Number: @currentJob.GetPhoneNumber()</p>
+  <h2><a href="/jobs/@currentJob.GetId()">@currentJob.GetName(), @currentJob.GetDescription()</a></h2>
 }
 <p><a href="/">Add another job</a></p>
 <form action="/jobs_cleared" method="post">

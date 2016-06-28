@@ -14,16 +14,19 @@ namespace ToDoList
         newJob.SetEmail(Request.Form["contact-email"]);
         newJob.SetName(Request.Form["company-name"]);
         newJob.SetPhoneNumber(Request.Form["contact-number"]);
-        newJob.Save();
         return View["job_added.cshtml", newJob];
       };
-      Get["/view_all_jobs"] = _ => {
+      Get["/jobs"] = _ => {
         List<Job> allJobs = Job.GetAll();
         return View["view_all_jobs.cshtml", allJobs];
       };
       Post["/jobs_cleared"] = _ => {
         Job.ClearAll();
         return View["jobs_cleared.cshtml"];
+      };
+      Get["/jobs/{id}"] = parameters => {
+        Job job = Job.Find(parameters.id);
+        return View["job.cshtml", job];
       };
     }
   }
