@@ -21,6 +21,10 @@ namespace ToDoList
         List<Job> allJobs = Job.GetAll();
         return View["view_all_jobs.cshtml", allJobs];
       };
+      Post["/jobs_cleared"] = _ => {
+        Job.ClearAll();
+        return View["jobs_cleared.cshtml"];
+      };
     }
   }
 }
